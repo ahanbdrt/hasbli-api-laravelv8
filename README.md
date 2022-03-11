@@ -18,3 +18,5 @@ git checkout -b nama_branch
 * project/daftar_barang tenant -> dimas
 * barang jual tenan
 * member beli
+
+## ayam
