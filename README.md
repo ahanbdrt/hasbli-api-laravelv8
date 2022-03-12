@@ -6,6 +6,7 @@
 3. copy .env.example to .env
 4. php artsan key:generate
 5. php artsan serve
+6. dump hasblidb.sql
 
 git checkout -b nama_branch
 
@@ -19,4 +20,4 @@ git checkout -b nama_branch
 * barang jual tenan
 * member beli
 
-## ayam
+
