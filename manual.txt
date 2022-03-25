@@ -1,0 +1,10 @@
+membuat migration::
+php artisan make:model hasblidb_example -m
+
+
+membuat resource
+php artisan make:resource ExampleResource
+
+
+membuat controller
+php artisan make:controller Api\\ExampleController -r 
