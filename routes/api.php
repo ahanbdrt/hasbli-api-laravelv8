@@ -18,8 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/**
- * route resource tenant
-*/
 Route::apiResource('/tenant', App\Http\Controllers\Api\TenantController::class);
-
