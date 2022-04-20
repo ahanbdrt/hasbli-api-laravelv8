@@ -20,4 +20,21 @@ git checkout -b nama_branch
 * barang jual tenan
 * member beli
 
+## Membuat Model
+
+php artisan make:model nama_model -m
+example
+php artisan make:model tenant_model -r 
+
+## Membuat Resource
+
+php artisan make:resource nama_resource
+example :
+php artisan make:resource TenantResource
+
+## Membuat Controller
+php artisan make:controller Api\TenantController -r 
+
+## Check Route
+php artisan route:list
 

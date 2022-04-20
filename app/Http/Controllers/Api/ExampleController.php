@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Models\tenant;
+
+use App\Models\hasblidb_example;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TenantResource;
+use App\Http\Resources\ExampleResource;
 use Illuminate\Support\Facades\Validator;
 
-class TenantController extends Controller
+class ExampleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class TenantController extends Controller
      */
     public function index()
     {
-        return new TenantResource(tenant::all());
+        return new ExampleResource(hasblidb_example::all());
     }
 
     /**
@@ -29,7 +30,7 @@ class TenantController extends Controller
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'nama_tenant'   => 'required'
+            'provinsi'   => 'required'
         ]);
 
         //response error validation
@@ -38,36 +39,36 @@ class TenantController extends Controller
         }
 
         //save to database
-        $tenant = tenant::create([
-            'nama_tenant'     => $request->nama_tenant
+        $example = hasblidb_example::create([
+            'provinsi'     => $request->provinsi
         ]);
 
-        return new TenantResource($tenant);
+        return new ExampleResource($example);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  tenant $tenant
+     * @param  hasblidb_example $example
      * @return \Illuminate\Http\Response
      */
-    public function show(tenant $tenant)
+    public function show(hasblidb_example $example)
     {
-        return new TenantResource($tenant);
+        return new ExampleResource($example);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  tenant $tenant
+     * @param  hasblidb_example $example
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tenant $tenant)
+    public function update(Request $request, hasblidb_example $example)
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'nama_tenant'   => 'required'
+            'provinsi'   => 'required'
         ]);
 
         //response error validation
@@ -76,23 +77,23 @@ class TenantController extends Controller
         }
 
         //update to database
-        $tenant->update([
-            'nama_tenant'     => $request->nama_tenant
+        $example->update([
+            'provinsi'     => $request->provinsi
         ]);
 
-        return new TenantResource($tenant);
+        return new ExampleResource($example);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  tenant $tenant
+     * @param  hasblidb_example $example
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tenant $tenant)
+    public function destroy(hasblidb_example $example)
     {
-        $tenant->delete();
+        $example->delete();
         
-        return new TenantResource($tenant);
+        return new ExampleResource($example);
     }
 }
