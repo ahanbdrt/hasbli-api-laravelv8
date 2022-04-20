@@ -28,9 +28,21 @@ class TenantController extends Controller
      */
     public function store(Request $request)
     {
+        // dd("ayam goreng penyetan, + es teh");
+        // dd("asik");
+        
+//         dump("ini isi request all");
+//         dump($request->all());
+// dump("klo ini hanya isinya nama_tenant");
+// dump($request->nama_tenant);    
+//         die;
+
+
+
         //set validation
         $validator = Validator::make($request->all(), [
-            'nama_tenant'   => 'required'
+            'nama_tenant'   => 'required',
+            'deskripsi'   => 'required'
         ]);
 
         //response error validation
@@ -40,7 +52,8 @@ class TenantController extends Controller
 
         //save to database
         $tenant = tenant::create([
-            'nama_tenant'     => $request->nama_tenant
+            'nama_tenant'     => $request->nama_tenant,
+            'deskripsi'     => $request->deskripsi
         ]);
 
         return new TenantResource($tenant);

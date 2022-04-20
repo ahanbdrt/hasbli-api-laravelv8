@@ -9,7 +9,7 @@ class tenant extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama_tenant'
+        'nama_tenant','deskripsi'
     ];
 
 
