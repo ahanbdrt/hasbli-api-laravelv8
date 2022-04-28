@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TenantResource;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 class TenantController extends Controller
 {
@@ -17,7 +18,12 @@ class TenantController extends Controller
      */
     public function index()
     {
-        return new TenantResource(tenant::all());
+        $result =[];
+        $tenant =  DB::select('select * from tenants');
+       
+        
+        return response()->json(['data' => $tenant]);
+        // return new TenantResource(tenant::all());
     }
 
     /**
@@ -30,12 +36,12 @@ class TenantController extends Controller
     {
         // dd("ayam goreng penyetan, + es teh");
         // dd("asik");
-        
-//         dump("ini isi request all");
-//         dump($request->all());
-// dump("klo ini hanya isinya nama_tenant");
-// dump($request->nama_tenant);    
-//         die;
+
+        //         dump("ini isi request all");
+        //         dump($request->all());
+        // dump("klo ini hanya isinya nama_tenant");
+        // dump($request->nama_tenant);    
+        //         die;
 
 
 
@@ -106,7 +112,7 @@ class TenantController extends Controller
     public function destroy(tenant $tenant)
     {
         $tenant->delete();
-        
+
         return new TenantResource($tenant);
     }
 }
