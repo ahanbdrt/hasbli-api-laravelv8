@@ -22,3 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  * route resource tenant
 */
 Route::apiResource('/tenant', App\Http\Controllers\Api\TenantController::class);
+Route::apiResource('/user', App\Http\Controllers\Api\UserController::class);
+Route::apiResource('/jenis_barang_tenant', App\Http\Controllers\Api\JenisBarangTenantController::class);

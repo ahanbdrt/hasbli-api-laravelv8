@@ -6,7 +6,9 @@ use App\Models\tenant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TenantResource;
+use App\Models\jenis_barang_tenant;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 class TenantController extends Controller
 {
     /**
@@ -16,7 +18,11 @@ class TenantController extends Controller
      */
     public function index()
     {
-        return new TenantResource(tenant::all());
+        $tenant =  DB::table('tenants')
+                ->join('jenis_barang_tenants','tenants.id', '=', 'jenis_barang_tenants.id_tenant')
+                ->select('tenants.id', 'tenants.nama_tenant','tenants.deskripsi',)
+                ->get();
+        return response()->json(['data' =>$tenant]);
     }
 
     /**
@@ -29,7 +35,8 @@ class TenantController extends Controller
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'nama_tenant'   => 'required'
+            'nama_tenant'   => 'required',
+            'deskripsi'   => 'required'
         ]);
 
         //response error validation
@@ -39,7 +46,8 @@ class TenantController extends Controller
 
         //save to database
         $tenant = tenant::create([
-            'nama_tenant'     => $request->nama_tenant
+            'nama_tenant'     => $request->nama_tenant,
+            'deskripsi'     => $request->deskripsi
         ]);
 
         return new TenantResource($tenant);
@@ -67,7 +75,8 @@ class TenantController extends Controller
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'nama_tenant'   => 'required'
+            'nama_tenant'   => 'required',
+            'deskripsi'   => 'required'
         ]);
 
         //response error validation
@@ -77,7 +86,8 @@ class TenantController extends Controller
 
         //update to database
         $tenant->update([
-            'nama_tenant'     => $request->nama_tenant
+            'nama_tenant'     => $request->nama_tenant,
+            'deskripsi'     => $request->deskripsi
         ]);
 
         return new TenantResource($tenant);
