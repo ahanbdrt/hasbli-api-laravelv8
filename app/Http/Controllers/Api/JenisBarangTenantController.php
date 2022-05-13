@@ -17,7 +17,7 @@ class JenisBarangTenantController extends Controller
      */
     public function index()
     {
-        $jenis_barang_tenant =  DB::select('SELECT * from jenis_barang_tenants');
+        $jenis_barang_tenant =  DB::select('select * from jenis_barang_tenants');
         return response()->json(['data' => $jenis_barang_tenant]);
         //
     }

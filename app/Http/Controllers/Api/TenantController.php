@@ -18,11 +18,35 @@ class TenantController extends Controller
      */
     public function index()
     {
+        $result=[];
         $tenant =  DB::table('tenants')
-                ->join('jenis_barang_tenants','tenants.id', '=', 'jenis_barang_tenants.id_tenant')
-                ->select('tenants.id', 'tenants.nama_tenant','tenants.deskripsi',)
-                ->get();
-        return response()->json(['data' =>$tenant]);
+                    ->join('jenis_barang_tenants', 'tenants.id', '=', 'jenis_barang_tenants.id_tenant')
+                    ->select('*')
+                    ->orderBy('jenis_barang_tenants.id_tenant')
+                    ->get();
+
+       foreach ($tenant as $key=>$sub) { 
+        $tenantJb = DB::table('tenants')
+                    ->join('jenis_barang_tenants', 'tenants.id', '=', 'jenis_barang_tenants.id_tenant')
+                    ->select('*')
+                    ->orderBy('jenis_barang_tenants.id_tenant')
+                    ->where('jenis_barang_tenants.id', '=', $sub->id)
+                    // ->where('tenants.id', '=', $sub->id_tenant)
+                    ->get();
+        $result[$key]['id']=$sub->id;
+        $result[$key]['nama_tenant']=$sub->nama_tenant;
+        $result[$key]['deskripsi']=$sub->deskripsi;
+        $subCat = array();
+        foreach ($tenantJb as $k=>$subcat) {
+            $jenisBT=[];
+                        $subCat['id'] = $subcat->id;
+                        $subCat['jenis_barang'] = $subcat->jenis_barang;
+                        $subCat['id_tenant'] = $subcat->id_tenant;
+                    }
+        $result[$key]['jenis_barang'] = $subCat;
+        }
+
+        return response()->json(['data'=>$result]);
     }
 
     /**
