@@ -20,4 +20,5 @@ git checkout -b nama_branch
 * barang jual tenan
 * member beli
 
+*tes
 
