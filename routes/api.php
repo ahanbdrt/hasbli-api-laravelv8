@@ -24,3 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('/tenant', App\Http\Controllers\Api\TenantController::class);
 Route::apiResource('/user', App\Http\Controllers\Api\UserController::class);
 Route::apiResource('/jenis_barang_tenant', App\Http\Controllers\Api\JenisBarangTenantController::class);
+Route::apiResource('/product', App\Http\Controllers\Api\ProductController::class);
+Route::apiResource('/transaksi', App\Http\Controllers\Api\TransaksiController::class);
+Route::apiResource('/penjualan', App\Http\Controllers\Api\PenjualanController::class);
