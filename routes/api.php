@@ -19,8 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 /**
- * route resource tenant
-*/
+ * route resource posts
+ */
 Route::apiResource('/tenant', App\Http\Controllers\Api\TenantController::class);
-Route::apiResource('/user', App\Http\Controllers\Api\UserController::class);
-Route::apiResource('/jenis_barang_tenant', App\Http\Controllers\Api\JenisBarangTenantController::class);
+Route::apiResource('/posts', App\Http\Controllers\Api\PostController::class);
+Route::apiResource('/product', App\Http\Controllers\Api\ProductController::class);
+Route::apiResource('/penjualan', App\Http\Controllers\Api\PenjualanController::class);
+Route::apiResource('/detail', App\Http\Controllers\Api\DetailController::class);
+
